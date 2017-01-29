@@ -14,7 +14,8 @@ INSERT INTO category(id, name) VALUE (5, 'neurology');
 
 
 INSERT INTO journal(id, publisher_id, category_id, name, publish_date, uuid) VALUES(1, 1, 3, 'Medicine', NOW(), '8305d848-88d2-4cbd-a33b-5c3dcc548056');
-INSERT INTO journal(id, publisher_id, category_id, name, publish_date, uuid) VALUES(2, 1, 4, 'Test Journal', NOW(), '09628d25-ea42-490e-965d-cd4ffb6d4e9d');
-INSERT INTO journal(id, publisher_id, category_id, name, publish_date, uuid) VALUES(3, 2, 5, 'Health', NOW(), '75f29692-237b-4116-95ed-645de5c57b4d');
+INSERT INTO journal(id, publisher_id, category_id, name, publish_date, uuid) VALUES(2, 1, 4, 'Test Journal - in digest', NOW()-1, '09628d25-ea42-490e-965d-cd4ffb6d4e9d');
+INSERT INTO journal(id, publisher_id, category_id, name, publish_date, uuid) VALUES(3, 2, 5, 'Health - in digest', NOW()-1, '75f29692-237b-4116-95ed-645de5c57b4d');
+
 
 INSERT INTO subscription(id, user_id, category_id, date) VALUES(1, 3, 3, NOW());
