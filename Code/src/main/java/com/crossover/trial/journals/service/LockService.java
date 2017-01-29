@@ -3,6 +3,7 @@ package com.crossover.trial.journals.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import com.crossover.trial.journals.model.Lock;
@@ -23,9 +24,12 @@ public class LockService {
 			lock.setKey(key);
 			lockRepository.save(lock);
 			return true;
-		} catch (RuntimeException e) {
-			LOGGER.error("Failed to lock", e);
+		} catch (DataIntegrityViolationException e) {
+			LOGGER.info("Already locked {} key", key);
+			LOGGER.debug("", e);
 			return false;
+		} catch (RuntimeException e) {
+			throw e;
 		}
 	}
 }

@@ -1,7 +1,7 @@
 package com.crossover.trial.journals.repository;
 
-import java.time.LocalDateTime;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
@@ -15,5 +15,5 @@ public interface JournalRepository extends CrudRepository<Journal, Long> {
 
     List<Journal> findByCategoryIdIn(List<Long> ids);
 
-    List<Journal> findByPublishDateBetween(LocalDateTime beginDate, LocalDateTime endDate);
+    List<Journal> findByPublishDateBetween(Date beginDate, Date endDate);
 }

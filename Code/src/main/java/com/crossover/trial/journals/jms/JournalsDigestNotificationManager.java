@@ -3,6 +3,8 @@ package com.crossover.trial.journals.jms;
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 import javax.mail.Message;
@@ -40,7 +42,9 @@ public class JournalsDigestNotificationManager {
 		LocalDateTime startOfDay = date.with(LocalTime.MIN);
 		LocalDateTime endOfDay = date.with(LocalTime.MAX);
 
-		List<Journal> newJournals = journalRepository.findByPublishDateBetween(startOfDay, endOfDay);
+		List<Journal> newJournals = journalRepository.findByPublishDateBetween(
+				Date.from(startOfDay.atZone(ZoneId.systemDefault()).toInstant()), 
+				Date.from(endOfDay.atZone(ZoneId.systemDefault()).toInstant()));
 		
 		if (newJournals.isEmpty()) {
 			LOGGER.info("No new journals between {} and {}", startOfDay, endOfDay);

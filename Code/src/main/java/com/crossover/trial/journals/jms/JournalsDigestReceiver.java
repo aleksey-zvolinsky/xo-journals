@@ -3,6 +3,7 @@ package com.crossover.trial.journals.jms;
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneOffset;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,8 +26,9 @@ public class JournalsDigestReceiver {
 	private LockService lockService;
 	
 	@JmsListener(destination = DESTINATION, containerFactory = "myFactory")
-	public void receiveMessage(LocalDateTime date) {
+	public void receiveMessage(Long epochSeconds) {
 		try {
+			LocalDateTime date = LocalDateTime.ofEpochSecond(epochSeconds, 0, ZoneOffset.UTC);
 			LOGGER.debug("Received message with request to submit digest for {} date", date);
 			
 			if(!lockService.lock(MessageFormat.format("digest-journal-on-{0}-date", date.with(LocalTime.MIN)))) {
