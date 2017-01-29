@@ -1,6 +1,7 @@
 package com.crossover.trial.journals.dto;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import org.junit.Test;
 
@@ -25,11 +26,19 @@ public class SubscriptionDTOTest {
 		o2.setName("o1");
 		
 		assertEquals(o1, o2);
+		assertEquals(o1.hashCode(), o2.hashCode());
+		assertEquals(o1, o1);
+		assertNotEquals(o1, null);
+		assertNotEquals(o1, "");
 		
 		o2.setActive(false);
 		o2.setName("o2");
 		
 		assertEquals(o1, o2);
+		assertEquals(o1.hashCode(), o2.hashCode());
+		
+		o2.setId(2L);
+		assertNotEquals(o1, o2);
 		
 	}
 }
