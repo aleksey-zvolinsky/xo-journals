@@ -1,6 +1,5 @@
 package com.crossover.trial.journals.model;
 
-import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -12,9 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 
 @Entity
-public class Journal implements Serializable {
-
-	private static final long serialVersionUID = 9168246716833365894L;
+public class Journal {
 
 	@Id
 	@GeneratedValue

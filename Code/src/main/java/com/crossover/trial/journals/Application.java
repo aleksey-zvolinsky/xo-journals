@@ -11,10 +11,14 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.config.JmsListenerContainerFactory;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 @ComponentScan
 @EnableAutoConfiguration
 @EnableJms
+@EnableAsync
+@EnableScheduling
 public class Application { 
 
 	public static final String ROOT;

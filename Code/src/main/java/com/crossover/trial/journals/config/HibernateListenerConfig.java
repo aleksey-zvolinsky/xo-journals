@@ -8,12 +8,12 @@ import org.hibernate.event.service.spi.EventListenerRegistry;
 import org.hibernate.event.spi.EventType;
 import org.hibernate.internal.SessionFactoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.context.annotation.Configuration;
 
 import com.crossover.trial.journals.model.listeners.PostInsertJournalListener;
 
-@Component
-public class HibernateListenerConfigurer {
+@Configuration
+public class HibernateListenerConfig {
      
     @PersistenceUnit
     private EntityManagerFactory emf;
