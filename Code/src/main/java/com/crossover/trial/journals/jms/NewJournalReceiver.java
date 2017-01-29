@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
+import com.crossover.trial.journals.notifications.JournalNotificationManager;
+
 @Component
 public class NewJournalReceiver {
 

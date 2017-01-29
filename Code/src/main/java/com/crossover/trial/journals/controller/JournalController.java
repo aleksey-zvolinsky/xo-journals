@@ -2,6 +2,7 @@ package com.crossover.trial.journals.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.Principal;
@@ -54,6 +55,6 @@ public class JournalController {
 		} else {
 			return ResponseEntity.notFound().build();
 		}
-
 	}
+
 }

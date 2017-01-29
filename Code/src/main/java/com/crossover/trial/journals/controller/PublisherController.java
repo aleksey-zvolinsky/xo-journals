@@ -9,7 +9,9 @@ import java.util.UUID;
 
 import com.crossover.trial.journals.model.Journal;
 import com.crossover.trial.journals.service.JournalService;
-import org.apache.log4j.Logger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -31,7 +33,7 @@ import com.crossover.trial.journals.service.CurrentUser;
 @Controller
 public class PublisherController {
 
-	private final static Logger log = Logger.getLogger(PublisherController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(PublisherController.class);
 
 	@Autowired
 	private PublisherRepository publisherRepository; 

@@ -1,4 +1,4 @@
-package com.crossover.trial.journals.jms;
+package com.crossover.trial.journals.notifications;
 
 import java.text.MessageFormat;
 import java.util.List;
@@ -44,13 +44,13 @@ public class JournalNotificationManager {
 		
 		for(Subscription subscription: subscriptions) {
 			
-			MimeMessagePreparator mailPreparator = compose(journal, subscription.getUser());
+			MimeMessagePreparator mailPreparator = composeMail(journal, subscription.getUser());
 			
 			mailService.send(mailPreparator);
 		}
 	}
 
-	private MimeMessagePreparator compose(Journal journal, User user) {
+	public MimeMessagePreparator composeMail(Journal journal, User user) {
 		return new MimeMessagePreparator() {
 
             public void prepare(MimeMessage mimeMessage) throws Exception {

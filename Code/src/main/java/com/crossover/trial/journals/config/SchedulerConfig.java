@@ -20,7 +20,7 @@ public class SchedulerConfig {
 	
 	private static final Logger LOGGER = LoggerFactory.getLogger(SchedulerConfig.class);
 
-	@Value("${journals.dailyCronExpression:0 * * * * *}")
+	@Value("${journals.dailyCronExpression:0 0 * * * *}")
 	private String dailyCronExpression;
 	
 	@Autowired

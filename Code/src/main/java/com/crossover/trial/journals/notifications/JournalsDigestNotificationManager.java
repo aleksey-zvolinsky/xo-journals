@@ -1,4 +1,4 @@
-package com.crossover.trial.journals.jms;
+package com.crossover.trial.journals.notifications;
 
 import java.text.MessageFormat;
 import java.time.LocalDateTime;
@@ -68,7 +68,7 @@ public class JournalsDigestNotificationManager {
 		return builder.toString();
 	}
 
-	private MimeMessagePreparator composeMail(String digestText, User user) {
+	public MimeMessagePreparator composeMail(String digestText, User user) {
 		return new MimeMessagePreparator() {
 
             public void prepare(MimeMessage mimeMessage) throws Exception {
