@@ -27,6 +27,9 @@ public class User {
 
 	@Column(nullable = false)
 	private String loginName;
+	
+	@Column(name = "email", nullable = false)
+	private String emailAddress;
 
 	@Column(nullable = false)
 	private String pwd;
@@ -88,5 +91,13 @@ public class User {
 
 	public void setSubscriptions(List<Subscription> subscriptions) {
 		this.subscriptions = subscriptions;
+	}
+
+	public String getEmailAddress() {
+		return emailAddress;
+	}
+
+	public void setEmailAddress(String emailAddress) {
+		this.emailAddress = emailAddress;
 	}
 }
