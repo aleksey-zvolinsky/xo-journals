@@ -22,9 +22,9 @@ import com.crossover.trial.journals.repository.UserRepository;
 import com.crossover.trial.journals.service.MailService;
 
 @Component
-public class DigestJournalNotificationManager {
+public class JournalsDigestNotificationManager {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(DigestJournalNotificationManager.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(JournalsDigestNotificationManager.class);
 
 	@Autowired
 	private MailService mailService;
@@ -35,7 +35,7 @@ public class DigestJournalNotificationManager {
 	@Autowired
 	private UserRepository userRepository;
 	
-	public void sendDigest(LocalDateTime date) {
+	public void sendForDate(LocalDateTime date) {
 		
 		LocalDateTime startOfDay = date.with(LocalTime.MIN);
 		LocalDateTime endOfDay = date.with(LocalTime.MAX);
@@ -47,28 +47,31 @@ public class DigestJournalNotificationManager {
 			return;
 		}
 
-		String digest = makeDigest(newJournals);
+		String digest = composeDigestText(newJournals);
 
 		List<User> users = userRepository.findAll();
+		
+		LOGGER.info("Sending digest to {} users", users.size());
+		
 		for (User user : users) {
 			mailService.send(composeMail(digest, user));
 		}
 	}
 
-	private String makeDigest(List<Journal> newJournals) {
+	private String composeDigestText(List<Journal> newJournals) {
 		StringBuilder builder = new StringBuilder();
 		newJournals.forEach(j -> builder.append(j.getName()).append("\n"));
 		return builder.toString();
 	}
 
-	private MimeMessagePreparator composeMail(String digest, User user) {
+	private MimeMessagePreparator composeMail(String digestText, User user) {
 		return new MimeMessagePreparator() {
 
             public void prepare(MimeMessage mimeMessage) throws Exception {
 				mimeMessage.setRecipient(Message.RecipientType.TO,
 		                new InternetAddress(user.getEmailAddress()));
 		        mimeMessage.setFrom(new InternetAddress("no-reply@example.com"));
-		        mimeMessage.setText(MessageFormat.format("Dear {0}, new arrivals on our web site:\n {1}", user.getLoginName(), digest));
+		        mimeMessage.setText(MessageFormat.format("Dear {0}, new arrivals on our web site:\n {1}", user.getLoginName(), digestText));
             }
 		};
 	}

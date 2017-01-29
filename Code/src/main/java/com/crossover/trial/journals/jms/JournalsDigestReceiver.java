@@ -13,13 +13,13 @@ import org.springframework.stereotype.Component;
 import com.crossover.trial.journals.service.LockService;
 
 @Component
-public class JournalDigestReceiver {
+public class JournalsDigestReceiver {
 	
 	public static final String DESTINATION = "journal-digest-queue";
-	private static final Logger LOGGER = LoggerFactory.getLogger(JournalDigestReceiver.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(JournalsDigestReceiver.class);
 
 	@Autowired
-	private DigestJournalNotificationManager manager;
+	private JournalsDigestNotificationManager digestManager;
 	
 	@Autowired
 	private LockService lockService;
@@ -34,7 +34,7 @@ public class JournalDigestReceiver {
 				return;
 			}
 			
-			manager.sendDigest(date);
+			digestManager.sendForDate(date);
 		} catch (RuntimeException e) {
 			LOGGER.error("Failed to generate digest notification", e);
 			throw e;
