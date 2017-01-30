@@ -72,10 +72,11 @@ public class JournalsDigestNotificationManager {
 		return new MimeMessagePreparator() {
 
             public void prepare(MimeMessage mimeMessage) throws Exception {
+            	mimeMessage.setSubject("New journals digest");
 				mimeMessage.setRecipient(Message.RecipientType.TO,
 		                new InternetAddress(user.getEmailAddress()));
 		        mimeMessage.setFrom(new InternetAddress("no-reply@example.com"));
-		        mimeMessage.setText(MessageFormat.format("Dear {0}, new arrivals on our web site:\n {1}", user.getLoginName(), digestText));
+		        mimeMessage.setText(MessageFormat.format("Dear {0},\nNew arrivals on our web site:\n {1}", user.getLoginName(), digestText));
             }
 		};
 	}

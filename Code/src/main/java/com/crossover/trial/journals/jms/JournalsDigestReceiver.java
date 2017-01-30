@@ -28,8 +28,10 @@ public class JournalsDigestReceiver {
 	
 	@JmsListener(destination = DESTINATION, containerFactory = "myFactory")
 	public void receiveMessage(Long epochSeconds) {
+		
+		LocalDateTime date = LocalDateTime.ofEpochSecond(epochSeconds, 0, ZoneOffset.UTC);
+		
 		try {
-			LocalDateTime date = LocalDateTime.ofEpochSecond(epochSeconds, 0, ZoneOffset.UTC);
 			LOGGER.debug("Received message with request to submit digest for {} date", date);
 			
 			if(!lockService.lock(MessageFormat.format("digest-journal-on-{0}-date", date.with(LocalTime.MIN)))) {
@@ -39,6 +41,7 @@ public class JournalsDigestReceiver {
 			
 			digestManager.sendForDate(date);
 		} catch (RuntimeException e) {
+			lockService.unlock(MessageFormat.format("digest-journal-on-{0}-date", date.with(LocalTime.MIN)));
 			LOGGER.error("Failed to generate digest notification", e);
 			throw e;
 		}

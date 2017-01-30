@@ -11,6 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.config.JmsListenerContainerFactory;
+import org.springframework.retry.annotation.EnableRetry;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
@@ -19,6 +20,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableJms
 @EnableAsync
 @EnableScheduling
+@EnableRetry
 public class Application { 
 
 	public static final String ROOT;
@@ -30,7 +32,6 @@ public class Application {
 	public static void main(String[] args) throws Exception {
 		SpringApplication app = new SpringApplicationBuilder(Application.class).build();
 		app.run(args);
-
 	}
 
     @Bean

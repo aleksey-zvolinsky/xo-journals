@@ -55,10 +55,11 @@ public class JournalNotificationManager {
 
             public void prepare(MimeMessage mimeMessage) throws Exception {
 
+            	mimeMessage.setSubject("New journal");
                 mimeMessage.setRecipient(Message.RecipientType.TO,
                         new InternetAddress(user.getEmailAddress()));
                 mimeMessage.setFrom(new InternetAddress("no-reply@example.com"));
-                mimeMessage.setText(MessageFormat.format("Dear {0}, \n New {1} journal was published. Please visit our web site to read it", user.getLoginName(), journal.getName()));
+                mimeMessage.setText(MessageFormat.format("Dear {0}, \nNew {1} journal was published. Please visit our web site to read it", user.getLoginName(), journal.getName()));
             }
         };
 	}

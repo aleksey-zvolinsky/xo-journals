@@ -18,11 +18,11 @@ public class Lock {
 	private String key;
 
 	@Column(nullable = false)
-	private Date sentDate;
+	private Date setDate;
 	
     @PrePersist
     void onPersist() {
-        this.sentDate = new Date();
+        this.setDate = new Date();
     }
 
 	public Long getId() {
@@ -41,11 +41,11 @@ public class Lock {
 		this.key = key;
 	}
 
-	public Date getSentDate() {
-		return sentDate;
+	public Date getSetDate() {
+		return setDate;
 	}
 
-	public void setSentDate(Date sentDate) {
-		this.sentDate = sentDate;
+	public void setSetDate(Date setDate) {
+		this.setDate = setDate;
 	}
 }

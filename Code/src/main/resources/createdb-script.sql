@@ -3,6 +3,7 @@ CREATE TABLE user
 (
     id BIGINT(20) PRIMARY KEY NOT NULL AUTO_INCREMENT,
     enabled BIT(1) NOT NULL,
+  `email` varchar(255) NOT NULL,
     login_name VARCHAR(255) NOT NULL,
     pwd VARCHAR(255) NOT NULL,
     role VARCHAR(255) NOT NULL

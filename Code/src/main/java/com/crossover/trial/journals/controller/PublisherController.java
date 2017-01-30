@@ -7,11 +7,6 @@ import java.security.Principal;
 import java.util.Optional;
 import java.util.UUID;
 
-import com.crossover.trial.journals.model.Journal;
-import com.crossover.trial.journals.service.JournalService;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
@@ -26,14 +21,14 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.crossover.trial.journals.Application;
+import com.crossover.trial.journals.model.Journal;
 import com.crossover.trial.journals.model.Publisher;
 import com.crossover.trial.journals.repository.PublisherRepository;
 import com.crossover.trial.journals.service.CurrentUser;
+import com.crossover.trial.journals.service.JournalService;
 
 @Controller
 public class PublisherController {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(PublisherController.class);
 
 	@Autowired
 	private PublisherRepository publisherRepository; 

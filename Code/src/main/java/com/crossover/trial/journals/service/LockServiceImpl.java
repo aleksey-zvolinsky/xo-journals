@@ -36,4 +36,9 @@ public class LockServiceImpl implements LockService {
 			throw e;
 		}
 	}
+
+	@Override
+	public void unlock(String key) {
+		lockRepository.deleteByKey(key);
+	}
 }
